@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  get 'questions/index'
+  get 'questions/show'
+  resources :questions, only: [:index, :show]
+>>>>>>> abe9febff0a6f3c99967216557492e0c5c93d243
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
