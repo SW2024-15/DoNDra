@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   get 'questions/index'
   get 'questions/show'
-  resources :questions, only: [:index, :show]
+  resources :questions, only: [:index, :show] do
+    post :answer, on: :member
+  end
 
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
