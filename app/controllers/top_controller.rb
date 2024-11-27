@@ -26,20 +26,3 @@ class TopController < ApplicationController
         redirect_to root_path
     end
 end
-
-
-# 動作方法
-# rails generate model user uid:string pass:string
-# rails db:migrat
-# rails c
-# 3.2.2 :001 > User.create(uid:"a", pass:"b")
-
-
-
-#pass.rbの内容をtop_controller.rbのdef loginに入れ込む必要あり。
-#rails c
-#userのさくせい
-#user = User.create(uid: 'testuser', pass: BCrypt::Password.create('password123'))
-#user = User.new(uid: 'testuser')
-#user.password = 'password123'
-#user.save

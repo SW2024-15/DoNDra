@@ -10,40 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.1].define(version: 2024_11_18_041453) do
-=======
-ActiveRecord::Schema[7.1].define(version: 2024_11_18_044025) do
->>>>>>> 269f7fb7efa8ea705096f7aaf26468834eab9ae6
+ActiveRecord::Schema[7.1].define(version: 2024_11_25_070116) do
   create_table "questions", force: :cascade do |t|
     t.text "content"
     t.boolean "correct_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "answered"
   end
 
-<<<<<<< HEAD
-=======
-  create_table "user_answers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "question_id", null: false
-    t.boolean "user_answer"
-    t.boolean "correct"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_user_answers_on_question_id"
-    t.index ["user_id"], name: "index_user_answers_on_user_id"
-  end
-
->>>>>>> 269f7fb7efa8ea705096f7aaf26468834eab9ae6
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uid"
+    t.string "pass"
   end
 
-  add_foreign_key "user_answers", "questions"
-  add_foreign_key "user_answers", "users"
 end
