@@ -1,24 +1,27 @@
+# app/models/questions.rb
+# app/models/question.rb
+class Question < ApplicationRecord
+
 module Questions
   extend ActiveSupport::Concern
 
   included do
-    # スコープ: よく使うクエリを定義
+    # スコープやバリデーション
     scope :recent, -> { order(created_at: :desc) }
     scope :unanswered, -> { where(answered: false) }
 
-    # バリデーション: データが正しいかチェック
     validates :content, presence: true, length: { minimum: 10 }
     validates :correct_answer, presence: true
   end
 
+  # クラスメソッド
   class_methods do
-    # クラスメソッド: モデル全体に対するロジックを定義
     def unanswered_count
       unanswered.count
     end
   end
 
-  # インスタンスメソッド: 個々のオブジェクトに対するロジックを定義
+  # インスタンスメソッド
   def mark_as_answered!
     update!(answered: true)
   end
@@ -31,4 +34,5 @@ module Questions
     answer.to_s.strip.casecmp(correct_answer.to_s.strip).zero?
   end
 end
-
+  # ここにモデルの内容
+end
