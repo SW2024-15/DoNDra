@@ -19,6 +19,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_25_070116) do
     t.boolean "answered"
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.boolean "user_answer"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -29,4 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_25_070116) do
     t.string "pass"
   end
 
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "users"
 end
