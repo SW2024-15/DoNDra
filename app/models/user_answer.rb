@@ -4,6 +4,10 @@ class UserAnswer < ApplicationRecord
   
   before_save :check_correct
   
+  def self.incorrect_for_user(user)
+    where(user: user, correct: false).includes(:question)
+  end
+  
   private
   
   def check_correct

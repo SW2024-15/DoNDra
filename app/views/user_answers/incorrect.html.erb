@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>間違えた問題リスト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .question {
+      margin: 15px 0;
+    }
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007BFF;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>間違えた問題リスト</h1>
+  <% if @incorrect_answers.any? %>
+    <% @incorrect_answers.each do |answer| %>
+      <div class="question">
+        <p><strong>問題: </strong><%= answer.question.question_text %></p>
+        <p><strong>あなたの回答: </strong><%= answer.user_answer %></p>
+        <p><strong>正しい答え: </strong><%= answer.question.correct_answer %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>間違えた問題はありません。</p>
+  <% end %>
+  <a href="<%= main_path %>" class="button">メインページに戻る</a>
+</body>
+</html>

@@ -2,10 +2,10 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @question = Qusetion.all
+    @questions = Question.all
   end
 
   def show
-    @question = Question.find(params[:id])
+    @questions = Question.find(params[:id])
   end
 end

@@ -19,4 +19,11 @@ Rails.application.routes.draw do
   get 'top/logout'
   # Defines the root path route ("/")a
   # root "posts#index"
+  
+  
+  # about_pathを追加
+  get 'about', to: 'top#about'
+  
+  #間違えた問題リストのルート
+  get 'user_answers/incorrect', to: 'user_answers#incorrect', as: 'incorrect_user_answers'
 end
