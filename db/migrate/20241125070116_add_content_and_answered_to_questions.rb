@@ -1,6 +1,6 @@
-class AddContentAndAnsweredToQuestions < ActiveRecord::Migration[6.1]
+# db/migrate/xxxx_add_answered_to_questions.rb
+class AddAnsweredToQuestions < ActiveRecord::Migration[7.1]
   def change
-    # 重複するcontentカラムの追加を削除
-    add_column :questions, :answered, :boolean
+    add_column :questions, :answered, :boolean, default: false
   end
 end
