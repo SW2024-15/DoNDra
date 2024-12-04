@@ -1,5 +1,37 @@
-ログイン中ですよ👍
-
-<p>
-    <%= link_to "ログアウト", top_logout_path %>
-</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007BFF;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Main Page</h1>
+  <div>
+    <a href="<%= root_path %>" class="button">Home</a>
+    <a href="<%= new_user_path %>" class="button">Create User</a>
+    <a href="<%= about_path %>" class="button">About</a>
+  </div>
+</body>
+</html>

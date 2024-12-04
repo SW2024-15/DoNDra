@@ -19,4 +19,10 @@ Rails.application.routes.draw do
   get 'top/logout'
   # Defines the root path route ("/")a
   # root "posts#index"
+  
+  
+  # about_pathを追加
+  get 'about', to: 'top#about'
+  
+  
 end
