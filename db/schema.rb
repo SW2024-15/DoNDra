@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_10_145837) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_144755) do
   create_table "chapters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -19,46 +19,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_145837) do
 
   create_table "questions", force: :cascade do |t|
     t.text "content"
-    t.boolean "correct_answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "answered"
+    t.string "option_a"
+    t.string "option_b"
+    t.string "correct_answer"
+    t.boolean "answered", default: false
     t.string "category"
-    t.integer "chapter_id", null: false
-    t.index ["chapter_id"], name: "index_questions_on_chapter_id"
-  end
-
-  create_table "quizzes", force: :cascade do |t|
-    t.text "content"
-    t.integer "chapter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chapter_id"], name: "index_quizzes_on_chapter_id"
-  end
-
-  create_table "user_answers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "question_id", null: false
-    t.boolean "user_answer"
-    t.boolean "correct"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_user_answers_on_question_id"
-    t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "uid"
     t.string "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "questions", "chapters"
-  add_foreign_key "quizzes", "chapters"
-  add_foreign_key "user_answers", "questions"
-  add_foreign_key "user_answers", "users"
 end

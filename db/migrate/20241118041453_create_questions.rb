@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration[7.1]
       t.string :option_b            # 選択肢B
       t.string :correct_answer      # 正しい選択肢（'A' or 'B'）
       t.boolean :answered, default: false  # 解答状態（未解答ならfalse）
-      
+      t.string :category
       t.timestamps
     end
   end
