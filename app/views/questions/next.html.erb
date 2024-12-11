@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>問題を解く</title>
+</head>
+<body>
+  <h1><%= @question.category %></h1>
+  <p><%= @question.content %></p>
+  <form action="<%= answer_question_path(@question) %>" method="post">
+    <%= csrf_meta_tags %>
+    <label for="user_answer">あなたの答え (AまたはB):</label>
+    <input type="text" name="user_answer" id="user_answer" required>
+    <input type="submit" value="解答する">
+  </form>
+</body>
+</html>

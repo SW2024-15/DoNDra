@@ -27,11 +27,13 @@
   </style>
 </head>
 <body>
-  <h1>ドンドラ</h1>
-  <div>
-    <a href="<%= question_path %>" class="button">問題 <%= question.id %></a>
-    <a href="<%= incorrect_user_answers_path %>" class="button">Miss問題</a>
-    <a href="<%= results_path %>" class="button">採点</a> <!-- 今までの採点結果 -->
-  </div>
-</body>
+  <h1>DoNDra</h1>
+  
+  <a href="<%= questions_path %>" class="button">問題に進む</a>
+  <a href="<%= incorrect_user_answers_path %>" class="button">間違えた問題リスト</a>
+  <a href="<%= about_path %>" class="button">アプリについて</a>
+  
+  <p>
+    <%= link_to "ログアウト", top_logout_path %>
+  </p>
 </html>

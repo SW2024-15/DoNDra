@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_04_075305) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_145837) do
+  create_table "chapters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "content"
     t.boolean "correct_answer"
@@ -18,6 +24,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_075305) do
     t.datetime "updated_at", null: false
     t.boolean "answered"
     t.string "category"
+    t.integer "chapter_id", null: false
+    t.index ["chapter_id"], name: "index_questions_on_chapter_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.text "content"
+    t.integer "chapter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_quizzes_on_chapter_id"
   end
 
   create_table "user_answers", force: :cascade do |t|
@@ -41,6 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_075305) do
     t.string "pass"
   end
 
+  add_foreign_key "questions", "chapters"
+  add_foreign_key "quizzes", "chapters"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
 end

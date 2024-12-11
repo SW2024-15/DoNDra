@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
+  <title>問題一覧</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>学科試験アプリ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .question {
+      margin: 15px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>学科試験対策アプリ</h1>
-  </header>
-
-  <main>
-    <section id="question">
-      <h2>問題</h2>
-      <p>問題文がここに表示されます。</p>
-    </section>
-
-    <section id="answers">
-      <button>○</button>
-      <button>×</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 学科試験アプリ</p>
-  </footer>
+  <h1>問題一覧</h1>
+  <% @questions.each do |question| %>
+    <div>
+      <%= link_to "問題 #{question.id}", question_path(question) %>
+    </div>
+  <% end %>
 </body>
 </html>

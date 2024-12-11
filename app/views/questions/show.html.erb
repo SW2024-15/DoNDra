@@ -1,2 +1,29 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>問題詳細</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>問題</h1>
+  <p><%= @question.content %></p> <!-- 問題文を表示 -->
+
+  <%= form_with url: answer_question_path(@question), method: :post, local: true do |f| %>
+    <div>
+      <label>答えを選んでください:</label>
+      <div>
+        <%= f.radio_button :user_answer, "A" %> <%= f.label :user_answer, "○" %>
+        <%= f.radio_button :user_answer, "B" %> <%= f.label :user_answer, "×" %>
+      </div>
+    </div>
+    <%= f.submit "回答する" %>
+  <% end %>
+</body>
+</html>
