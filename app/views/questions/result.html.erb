@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>結果発表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+  </style>
+</head>
+<body>
+  <h1>結果発表</h1>
+  <p>お疲れ様でした！</p>
+  <p>正解数: <%= @correct_count %> / <%= @total_questions %></p>
+
+  <%= link_to 'トップページに戻る', root_path %>
+</body>
+</html>

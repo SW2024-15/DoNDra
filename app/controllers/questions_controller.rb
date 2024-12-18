@@ -11,13 +11,15 @@ class QuestionsController < ApplicationController
   end
   
   def next
-    @question = Question.where.not(id: params[:current_question_id]).order("RANDOM()").first
-
+    answered_question_ids = UserAnswer.where(user: current_user).pluck(:question_id)
+    @question = Question.where.not(id: answered_question_ids).order("RANDOM()").first
+    
     if @question
       redirect_to question_path(@question)
     else
       flash[:notice] = "これ以上の問題はありません。"
-      redirect_to root_path
+      #redirect_to root_path
+      redirect_to result_questions_path
     end
   end
   
@@ -36,5 +38,11 @@ class QuestionsController < ApplicationController
 
   # 解答結果画面を表示
     render "questions/answer_result"
+  end
+  
+  def result
+    @correct_count = UserAnswer.where(user: current_user, correct: true).count
+    @incorrect_count = UserAnswer.where(user: current_user, correct: false).count
+    @total_questions = Question.count
   end
 end

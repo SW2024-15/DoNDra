@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :show] do
     post :answer, on: :member
     get :next, on: :collection
+    get :result, on: :collection
   end
   get 'questions/next', to: 'questions#next', as: 'next_question'
 
   # 間違えた問題リスト
   get 'user_answers/incorrect', to: 'user_answers#incorrect', as: 'incorrect_user_answers'
-
+  
   # aboutページ（オプション）
   get 'about', to: 'top#about'
   
