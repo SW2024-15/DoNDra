@@ -2,6 +2,8 @@ class UserAnswer < ApplicationRecord
   belongs_to :user
   belongs_to :question
   
+  validates :user_answer, presence: true
+  
   before_save :check_correct
   
   def self.incorrect_for_user(user)

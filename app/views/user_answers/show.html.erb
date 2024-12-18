@@ -1,0 +1,15 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.body %></p>
+
+<% if @user_answer %>
+  <h3>あなたの回答: <%= @user_answer.correct ? "正解" : "不正解" %></h3>
+  <p>正解: <%= @question.correct_answer %></p>
+  <%= link_to '問題一覧に戻る', questions_path %>
+<% else %>
+  <%= form_with model: @user_answer, url: answer_question_path(@question), method: :post, local: true do |f| %>
+    <%= f.label :user_answer, 'あなたの回答' %>
+    <%= f.radio_button :user_answer, '○' %> 正解
+    <%= f.radio_button :user_answer, '×' %> 不正解
+    <%= f.submit '回答する' %>
+  <% end %>
+<% end %>

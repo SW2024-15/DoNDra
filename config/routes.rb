@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :users
 
   # TOP画面用
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   # 問題に関するルート
   resources :questions, only: [:index, :show] do
     post :answer, on: :member
+    get :next, on: :collection
   end
   get 'questions/next', to: 'questions#next', as: 'next_question'
 

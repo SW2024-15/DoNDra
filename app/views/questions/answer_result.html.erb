@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>解答結果</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>解答結果</h1>
+  
+  <% if @correct %>
+    <p style="color: green; font-size: 20px;">正解！</p>
+  <% else %>
+    <p style="color: red; font-size: 20px;">不正解。</p>
+  <% end %>
+
+  <p>正しい答え: <%= @question.correct_answer %></p>
+
+  <!-- 次の問題へ進むリンク -->
+  <%= link_to "次の問題へ進む", next_questions_path(current_question_id: @question.id) %>
+</body>
+</html>

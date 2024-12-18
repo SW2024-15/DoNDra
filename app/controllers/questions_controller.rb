@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user! # Deviseで提供されるメソッド
   
   def index
     @questions = Question.all
@@ -6,15 +7,17 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    #@user_answer = UserAnswer.find_by(user: current_user, question: @question) # ユーザーの解答を取得
   end
   
   def next
-    @question = Question.order("RANDOM()").first
+    @question = Question.where.not(id: params[:current_question_id]).order("RANDOM()").first
+
     if @question
-      redirect_to question_path(@question) # showページへ
+      redirect_to question_path(@question)
     else
-      flash[:notice] = "問題がありません"
-      redirect_to questions_path
+      flash[:notice] = "これ以上の問題はありません。"
+      redirect_to root_path
     end
   end
   
@@ -23,16 +26,15 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     user_answer = params[:user_answer] # ○ または ×
 
-    # 正解判定: DBに保存されている正解と比較
-    correct = @question.correct_answer == user_answer
+  # 正解判定
+    @correct = @question.correct_answer == user_answer
 
-    # ユーザーの解答を記録
-    UserAnswer.create(user: current_user, question: @question, correct: correct)
+  # 解答を保存または更新
+    @user_answer = UserAnswer.find_or_initialize_by(user: current_user, question: @question)
+    @user_answer.correct = @correct
+    @user_answer.save
 
-    # 解答結果に応じてメッセージを表示
-    flash[:notice] = correct ? "正解！次の問題に進みましょう。" : "不正解。次の問題に進みましょう。"
-  
-    # 次の問題へリダイレクト
-    redirect_to next_question_path
+  # 解答結果画面を表示
+    render "questions/answer_result"
   end
 end

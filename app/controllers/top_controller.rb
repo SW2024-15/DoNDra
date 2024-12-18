@@ -1,6 +1,6 @@
 class TopController < ApplicationController
     def main
-        if session[:login_uid]
+        if user_signed_in?
             render "main"
         else
             render "login"
@@ -8,10 +8,9 @@ class TopController < ApplicationController
     end
     
     def login
-        user = User.find_by(uid: params[:uid])
-        
-        if user and BCrypt::Password.new(user.pass) == params[:pass]
-            session[:login_uid] = params[:uid]
+        user = User.find_by(email: params[:email])
+        if user&.valid_password?(params[:password])
+            sign_in user  # Deviseのログイン処理
             redirect_to top_main_path
         else
             render "error", status: 422
@@ -19,7 +18,7 @@ class TopController < ApplicationController
     end
     
     def logout
-        session.delete(:login_uid)
+        sign_out current_user
         redirect_to root_path
     end
 

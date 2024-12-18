@@ -1,6 +1,7 @@
 # app/models/questions.rb
 # app/models/question.rb
 class Question < ApplicationRecord
+  has_many :user_answers
 
 module Questions
   extend ActiveSupport::Concern
