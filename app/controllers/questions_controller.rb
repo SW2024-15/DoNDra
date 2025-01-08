@@ -7,7 +7,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    #@user_answer = UserAnswer.find_by(user: current_user, question: @question) # ユーザーの解答を取得
   end
   
   def next
