@@ -32,10 +32,14 @@
         </div>
         </p>
       </div>
+      <br>
       <%= f.submit "回答する" %>
     <% end %>
-    <p>
-    <!-- 問題一覧に戻るボタン -->
+    <br>
+    <div class="progress">
+      <p>現在の進捗: <%= @answered_count + 1 %> / <%= @total_questions %> 問中</p>
+    </div>
+    <br>
     <div>
       <%= link_to "問題一覧に戻る", questions_path, class: "button" %>
     </div>

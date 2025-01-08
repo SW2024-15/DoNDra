@@ -2,6 +2,7 @@
 # app/models/question.rb
 class Question < ApplicationRecord
   has_many :user_answers
+  has_many :answering_users, through: :user_answers, source: :user
 
 module Questions
   extend ActiveSupport::Concern

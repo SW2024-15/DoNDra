@@ -7,6 +7,10 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    # 解答済みの問題数
+    @answered_count = UserAnswer.where(user: current_user).count
+    # 全体の問題数
+    @total_questions = Question.count
   end
   
   def next
@@ -16,7 +20,7 @@ class QuestionsController < ApplicationController
     if @question
       redirect_to question_path(@question)
     else
-      flash[:notice] = "これ以上の問題はありません。"
+      flash[:notice] = "以上で終了になります"
       #redirect_to root_path
       redirect_to result_questions_path
     end
@@ -33,6 +37,8 @@ class QuestionsController < ApplicationController
   # 解答を保存または更新
     @user_answer = UserAnswer.find_or_initialize_by(user: current_user, question: @question)
     @user_answer.correct = @correct
+    @user_answer.user_answer = user_answer # ユーザーの選択を保存
+    #@user_answer.answered_at = Time.current # 回答日時を保存
     @user_answer.save
 
   # 解答結果画面を表示
