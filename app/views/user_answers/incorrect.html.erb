@@ -18,11 +18,13 @@
   <% if @incorrect_answers.any? %>
     <% @incorrect_answers.each do |answer| %>
       <div class="question">
+        <br>
         <p><strong>問題: </strong><%= answer.question.content %></p>
-        <p><strong>あなたの回答: </strong><%= answer.user_answer %></p>
-        <p><strong>正しい答え: </strong><%= answer.question.correct_answer %></p>
+        <p><strong>あなたの解答: </strong><%= answer.user_answer == "A" ? "○" : "×" %></p>
+        <p><strong>正しい答え: </strong><%= answer.question.correct_answer == "A" ? "○" : "×" %></p>
       </div>
     <% end %>
+  
   <% else %>
     <p>間違えた問題はありません。</p>
   <% end %>

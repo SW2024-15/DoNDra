@@ -14,13 +14,14 @@ Rails.application.routes.draw do
     get :next, on: :collection
     get :result, on: :collection
   end
+  
   get 'questions/next', to: 'questions#next', as: 'next_question'
 
   # 間違えた問題リスト
   get 'user_answers/incorrect', to: 'user_answers#incorrect', as: 'incorrect_user_answers'
   
-  # aboutページ（オプション）
-  get 'about', to: 'top#about'
+  #リセット
+  delete '/reset_answers', to: 'user_answers#reset_answers', as: 'reset_answers'
   
   # ヘルスチェック
   get "up" => "rails/health#show", as: :rails_health_check

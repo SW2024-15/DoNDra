@@ -19,8 +19,9 @@
     <p style="color: red; font-size: 20px;">不正解。</p>
   <% end %>
 
-  <p>正しい答え: <%= @question.correct_answer %></p>
-
+  <p><strong>正しい答え: </strong><%= @question.correct_answer == "A" ? "○" : "×" %></p>
+  
+  <br>
   <!-- 次の問題へ進むリンク -->
   <%= link_to "次の問題へ進む", next_questions_path(current_question_id: @question.id) %><p>
   
