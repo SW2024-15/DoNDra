@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_17_153134) do
-  create_table "chapters", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2025_01_10_020300) do
   create_table "questions", force: :cascade do |t|
     t.text "content"
     t.string "option_a"
@@ -32,6 +26,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_153134) do
     t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.boolean "correct"
+    t.string "answer"
+    t.datetime "answered_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_answer"
@@ -40,8 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_153134) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "uid"
-    t.string "pass"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
